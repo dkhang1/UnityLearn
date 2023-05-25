@@ -56,7 +56,12 @@
     <Analyzer Include="/Applications/Visual Studio.app/Contents/MonoBundle/Addins/MonoDevelop.Unity/Analyzers/Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets/Movement.cs" />
+    <Compile Include="Assets/Low Poly Guns/Scripts/GunsMenu.cs" />
+    <Compile Include="Assets/Scripts/CameraFollow.cs" />
+    <Compile Include="Assets/Low Poly Guns/Scripts/GunView.cs" />
+    <Compile Include="Assets/Scripts/Gun.cs" />
+    <Compile Include="Assets/Scripts/Character.cs" />
+    <Compile Include="Assets/Scripts/Coin.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
