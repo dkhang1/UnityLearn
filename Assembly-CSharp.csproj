@@ -62,6 +62,7 @@
     <Compile Include="Assets/Scripts/Gun.cs" />
     <Compile Include="Assets/Scripts/Character.cs" />
     <Compile Include="Assets/Scripts/Coin.cs" />
+    <Compile Include="Assets/Scripts/TileManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
