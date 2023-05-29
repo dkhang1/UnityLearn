@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public enum SIDE { Left, Mid, Right };
@@ -31,6 +32,9 @@ public class Character : MonoBehaviour
 
     public static int CoinAmount;
     bool alive = true;
+
+    public Text coinsText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +51,9 @@ public class Character : MonoBehaviour
     void Update()
     {
         if (!alive) return;
+
+        coinsText.text = "Coins: " + CoinAmount;
+
         Movement();
         Jumping();
         Sliding();
