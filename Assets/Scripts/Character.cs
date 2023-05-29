@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 [System.Serializable]
@@ -29,7 +30,7 @@ public class Character : MonoBehaviour
     private float ColCenterY;
 
     public static int CoinAmount;
-
+    bool alive = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +46,7 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (!alive) return;
         Movement();
         Jumping();
         Sliding();
@@ -56,7 +57,6 @@ public class Character : MonoBehaviour
     {
         SwipeLeft = Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow);
         SwipeRight = Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow);
-
 
         if (SwipeLeft && !isSliding)
         {
@@ -84,9 +84,13 @@ public class Character : MonoBehaviour
                 m_Side = SIDE.Mid;
             }
         }
-        Vector3 moveVector = new Vector3(x - transform.position.x, y * Time.deltaTime, RunSpeed * Time.deltaTime);
-        x = Mathf.Lerp(x, NewXPos, sideMovingSpeed * Time.deltaTime);
-        m_Char.Move(moveVector);
+
+       
+        
+            Vector3 moveVector = new Vector3(x - transform.position.x, y * Time.deltaTime, RunSpeed * Time.deltaTime);
+            x = Mathf.Lerp(x, NewXPos, sideMovingSpeed * Time.deltaTime);
+            m_Char.Move(moveVector);
+        
     }
 
     void Jumping()
@@ -122,7 +126,7 @@ public class Character : MonoBehaviour
         }
         if (SwipeDown)
         {
-            SlideCounter = 0.2f;
+            SlideCounter = 0.3f;
             y -= 10f;
             m_Char.center = new Vector3(0, (ColCenterY) / 2f, 0);
             m_Char.height = ColHeight / 2f;
@@ -139,4 +143,18 @@ public class Character : MonoBehaviour
         }
     }
 
+    void GetHit()
+    {
+       
+        alive = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Obstacle")
+        {
+            GetHit();
+        }
+    }
 }
