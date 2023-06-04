@@ -19,6 +19,8 @@ public class Character : MonoBehaviour
 
     public float XValue;
     private CharacterController m_Char;
+    public Animator m_Animator;
+ 
     public float sideMovingSpeed;
     private float x;
 
@@ -30,20 +32,24 @@ public class Character : MonoBehaviour
     private float ColHeight;
     private float ColCenterY;
 
+  
     public static int CoinAmount;
+    float Score;
     bool alive = true;
 
     public Text coinsText;
+    public Text scoreText;
 
     // Start is called before the first frame update
     void Start()
     {
         m_Char = GetComponent<CharacterController>();
+
         ColCenterY = m_Char.center.y;
         ColHeight = m_Char.height;
         transform.position = Vector3.zero;
-
         CoinAmount = 0;
+        Score = 0;
 
     }
 
@@ -51,9 +57,9 @@ public class Character : MonoBehaviour
     void Update()
     {
         if (!alive) return;
+        coinsText.text = "COINS: " + CoinAmount;
 
-        coinsText.text = "Coins: " + CoinAmount;
-
+        ScoreTracking();
         Movement();
         Jumping();
         Sliding();
@@ -92,21 +98,22 @@ public class Character : MonoBehaviour
             }
         }
 
-       
-        
-            Vector3 moveVector = new Vector3(x - transform.position.x, y * Time.deltaTime, RunSpeed * Time.deltaTime);
-            x = Mathf.Lerp(x, NewXPos, sideMovingSpeed * Time.deltaTime);
-            m_Char.Move(moveVector);
-        
+
+
+        Vector3 moveVector = new Vector3(x - transform.position.x, y * Time.deltaTime, RunSpeed * Time.deltaTime);
+        x = Mathf.Lerp(x, NewXPos, sideMovingSpeed * Time.deltaTime);
+        m_Char.Move(moveVector);
+
     }
 
     void Jumping()
     {
         SwipeUp = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
-
-        if (m_Char.isGrounded)
+        m_Animator.SetBool("isGrounded", m_Char.isGrounded);
+        
+        if (m_Char.isGrounded )
         {
-            if (SwipeUp)
+            if (SwipeUp && !isSliding)
             {
                 y = jumpPower;
             }
@@ -122,7 +129,7 @@ public class Character : MonoBehaviour
     void Sliding()
     {
         SwipeDown = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
-
+        m_Animator.SetBool("isSlided", isSliding);
         SlideCounter -= Time.deltaTime;
         if (SlideCounter <= 0f)
         {
@@ -152,16 +159,23 @@ public class Character : MonoBehaviour
 
     void GetHit()
     {
-       
+
         alive = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Obstacle")
+        if (other.tag == "Obstacle")
         {
             GetHit();
         }
+    }
+
+    void ScoreTracking()
+    {
+
+        Score = transform.position.z;
+        scoreText.text = "SCORE: " + Mathf.Round(Score);
     }
 }

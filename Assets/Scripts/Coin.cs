@@ -24,7 +24,7 @@ public class Coin : MonoBehaviour
         if(other.tag == "Player")
         {
             Character.CoinAmount += 1;
-          
+           
             Destroy(gameObject);
         }
     }

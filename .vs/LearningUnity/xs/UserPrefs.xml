@@ -1,10 +1,11 @@
 ﻿<Properties StartupConfiguration="{552CCFEB-3EC3-B130-D5AF-9CE5A178B517}|">
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="88f2f382-ae2e-4b4e-b094-eac608dc6a51" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Character.cs">
     <Files>
-      <File FileName="Assets/Scripts/Gun.cs" />
-      <File FileName="Assets/Scripts/Character.cs" Line="13" Column="1" />
+      <File FileName="Assets/Scripts/Character.cs" Line="116" Column="39" />
+      <File FileName="Assets/Scripts/CameraFollow.cs" />
+      <File FileName="Assets/Scripts/Coin.cs" />
+      <File FileName="Assets/Scripts/TileManager.cs" />
+      <File FileName="Assets/Scripts/MainMenu.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -18,9 +19,11 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="c435702c-deed-459f-91ab-5fe3ce9d9f4d" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

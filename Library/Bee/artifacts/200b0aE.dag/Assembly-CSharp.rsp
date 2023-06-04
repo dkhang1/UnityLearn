@@ -350,6 +350,7 @@
 "Assets/Scripts/Character.cs"
 "Assets/Scripts/Coin.cs"
 "Assets/Scripts/Gun.cs"
+"Assets/Scripts/MainMenu.cs"
 "Assets/Scripts/TileManager.cs"
 -langversion:9.0
 
